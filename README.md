@@ -20,7 +20,7 @@ Opensource RISC-V implemented from scratch in one night!
 
 Developed in a magic night of 19 Aug, 2018 between 2am and 8am, the
 *DarkRISCV* softcore started as an proof of concept for the opensource
-RISC-V instruction set.  
+RISC-V instruction set.
 
 The initial concept was based in my other early 16-bit RISC processors and
 composed by a simplified two stage pipeline, where a instruction is fetch
@@ -43,7 +43,7 @@ Nowadays, after two years of development, a three stage pipeline working
 with a single clock phase is also available, resulting in a better
 distribution between the decode and execute stages.  In this case the
 instruction is fetch in the first clock from a blockram, decoded in the
-second clock and executed in the third clock.  
+second clock and executed in the third clock.
 
 As long the load instruction cannot load the data from a blockram in a
 single clock, the external logic inserts one extra clock in IO operations. 
@@ -110,11 +110,11 @@ opensource option to replace the 68000.
 Anyway, it does not match with the my requirements regarding space and
 performance.  As part of the investigation, I tested other cores, but I
 found no much options as good as the TG68 and I even started design a
-risclized-68000 core, in order to try find a solution.  
+risclized-68000 core, in order to try find a solution.
 
 Unfortunately, due to compiler requirements (standard GCC), I found no much
 ways to reduce the space and increase the performance, in a way that I
-started investigate about non-680x0 cores.  
+started investigate about non-680x0 cores.
 
 After lots of tests with different cores, I found the *picorv32* core and
 the all the ecosystem around the RISC-V.  The *picorv32* is a very nice
@@ -125,7 +125,7 @@ performance of 50MIPS, which is very impressive.
 
 Although the *picorv32* is a very good option to directly replace the 680x0
 family, it is not powerful enough to replace some Coldfire processors (more
-than 75MIPS).  
+than 75MIPS).
 
 As long I had some good experience with experimental 16-bit RISC cores for
 DSP-like applications, I started code the *DarkRISCV* only to check the
@@ -160,7 +160,8 @@ following organization:
 Setup Instructions:
 
 Step 1: Clone the DarkRISC repo to your local using below code.
-git clone https://github.com/darklife/darkriscv.git
+
+    git clone https://github.com/darklife/darkriscv.git
 
 Pre Setup Guide for MacOS:
 
@@ -171,56 +172,61 @@ Essentially, the ecosystem cannot be utilized in MacOS because of on of the depe
 In order to overcome this issue, we need to install Linux/Windows on MacOS by using below two methods:
 
 a) WineSkin, which is a kind of Windows emulator that runs the Windows application natively but intercepts and emulate the Windows calls to map directly in the macOS.
+
 b) VirtualBox (or VMware, Parallels, etc) in order to run a complete Windows OS or Linux, which appears to be far better than the WineSkin option.
 
 I used the second method and installed VMware Fusion to install Linux Mint. Please find below the links I used to obtain download files.
 
 Dependencies:
 
-1.  Icarus Verilog
-a.  Bison
-b.  GNU
-c.  G++
-d.  FLEX
+1. Icarus Verilog
 
-2.  Xilinx 14.7 ISE
+    * Bison
+    * GNU
+    * G++
+    * FLEX
+
+* Xilinx 14.7 ISE
 
 
 Icarus Verilog Setup:
 
-The steps have been condensed for linux operating system. Complete steps for all other OS platforms are available on https://iverilog.fandom.com/wiki/Installation_Guide.
+The steps have been condensed for linux operating system. Complete steps for all other OS platforms are available on [Installation Guide](https://iverilog.fandom.com/wiki/Installation_Guide).
 
-Step 1: Download Verilog download tar file from ftp://ftp.icarus.com/pub/eda/verilog/ . Always install the latest version. Verilog-10.3 is the latest version as of now.
+Step 1: Download Verilog download [tar file](ftp://ftp.icarus.com/pub/eda/verilog).
+Always install the latest version. Verilog-10.3 is the latest version as of now.
 
-Step 2: Extract the tar file using ‘% tar -zxvf verilog-version.tar.gz’.
+Step 2: Extract the tar file using `% tar -zxvf verilog-version.tar.gz`.
 
 Step 3: Go to the Verilog folder using ‘cd Verilog-version’. Here it is cd Verilog-10.3.
 
-Step 4: Check if you have the following libraries installed: Flex, Bison, g++ and gcc. If not use ‘sudo apt-get install flex bison g++ gcc’ in terminal to install. Restart the system once for effects to change place.
+Step 4: Check if you have the following libraries installed: Flex, Bison, g++ and gcc. If not use `sudo apt-get install flex bison g++ gcc` in terminal to install. Restart the system once for effects to change place.
 
 Step 5: Run the below commands in directory Verilog-10.3
 1.  ./configure
 2.  Make
 3.  Sudo make install
 
-Step 6: Use ‘sudo apt-get install verilog’ to install Verilog.
+Step 6: Use `sudo apt-get install verilog` to install Verilog.
 
-Optional Step: sudo apt-get install gtkwave
+Optional Step: `sudo apt-get install gtkwave`
 
 Xilinx Setup:
 
-Follow the below video on youtube for complete installation.
-
-https://www.youtube.com/watch?v=meO-b6Ib17Y
+Follow the [video](https://www.youtube.com/watch?v=meO-b6Ib17Y) on youtube
+for complete installation.
 
 Note: Make sure you have libncurses libraries installed in linux. 
 
 If not use the below codes:
 
 1.  For 64 bit architechure
-a.  Sudo apt-get install libncurses5 libncursesw-dev
+
+    sudo apt-get install libncurses5 libncursesw-dev
+
 2.  For 32 bit architecture
-a.  Sudo apt-get install libncurses5:i386
+
+    sudo apt-get install libncurses5:i386
 
 Once all pre-requisites are installed, go to root directory and run the below code:
 
@@ -438,12 +444,12 @@ the provided firmware and use your own firmware.
 ### "sim" Directory
 
 The simulation, in the other hand will show some waveforms and is possible
-check the *DarkRISCV* operation when running the example code.  
+check the *DarkRISCV* operation when running the example code.
 
 The main simulation tool for *DarkRISCV* is the iSIM from Xilinx ISE 14.7,
 but the Icarus simulator is also supported via the Makefile in the *sim*
 directory (the changes regarding Icarus are active when the symbol
-__ICARUS__ is detected). I also included a workaround for ModelSim, as 
+`__ICARUS__` is detected). I also included a workaround for ModelSim, as
 pointed by our friend HYF (the changes regarding ModelSim are active when the 
 symbol MODEL_TECH is detected).
 
@@ -615,8 +621,8 @@ for the data side of the core (connected to RAM and peripherals). The
 problem regards to the fact that the following actions must be done in a
 single clock:
 
-- generate the DADDR[31:0] = REG[SPTR][31:0]+EXTSIG(IMM[11:0])
-- generate the BE[3:0] according to the operand size and DADDR[1:0]
+- generate the `DADDR[31:0] = REG[SPTR][31:0]+EXTSIG(IMM[11:0])`
+- generate the `BE[3:0]` according to the operand size and `DADDR[1:0]`
 
 In the case of read operation, the DATAI path includes also a small mux
 in order to separate RAM and peripheral buses, as well separate the
@@ -625,7 +631,7 @@ number of peripherals and the complexity increases.
 
 Of course, the best performance setup uses a 3-state pipeline and a
 single-clock phase (posedge) in the entire logic, in a way that the 2-stage
-pipeline and dual-clock phase will be kept only for reference.  
+pipeline and dual-clock phase will be kept only for reference.
 
 The only disadvantage of the 3-state pipeline is one extra wait-state in the
 load operation and the longer pipeline flush of two clocks in the taken
@@ -669,7 +675,7 @@ interrupts.  As long the interrupt handling and, in a general way, threading
 requires flush the current pipelines in order to change context, by this
 way, match the interrupt/threading with the pipeline flush makes some sense!
 
-With the option __THREADING__ is possible test this feature. 
+With the option `__THREADING__` is possible test this feature.
 
 The implementation is in very early stages of development and does not
 handle correctly the initial SP and PC.  Anyway, it works and enables the
@@ -824,10 +830,9 @@ implemented, the gcc appears to not use of that instructions and they are
 not available in the core.
 
 Although is possible use the compiler set available in the oficial RISC-V
-site, our colleagues from *lowRISC* project pointed a more clever way to
-build the toolchain:
-
-https://www.lowrisc.org/blog/2017/09/building-upstream-risc-v-gccbinutilsnewlib-the-quick-and-dirty-way/
+site, our colleagues from *lowRISC* project pointed a more
+[clever way](https://www.lowrisc.org/blog/2017/09/building-upstream-risc-v-gccbinutilsnewlib-the-quick-and-dirty-way/)
+to build the toolchain.
 
 Basically:
 
@@ -859,9 +864,8 @@ without need compile anything.
 Finally, as long the *DarkRISCV* is not yet fully tested, sometimes is a
 very good idea compare the code execution with another stable reference!
 
-In this case, I am working with the project *picorv32*:
-
-https://github.com/cliffordwolf/picorv32
+In this case, I am working with the project
+*[picorv32](https://github.com/cliffordwolf/picorv32)*.
 
 When I have some time, I will try create a more well organized support in
 order to easily test both the *DarkRISCV* and *picorv32* in the same cache,
@@ -936,9 +940,8 @@ RISCV. Instead, the easy way is make the endian switch directly in the IO
 device or in the memory region.
 
 As long is not so easy build the GCC in some machines, I left in a public
-share the source and the pre-compiled binary set of GCC tools for RV32E:
-
-https://drive.google.com/drive/folders/1GYkqDg5JBVeocUIG2ljguNUNX0TZ-ic6?usp=sharing
+[share](https://drive.google.com/drive/folders/1GYkqDg5JBVeocUIG2ljguNUNX0TZ-ic6?usp=sharing)
+the source and the pre-compiled binary set of GCC tools for RV32E.
 
 As far as i remember it was compiled in a Slackware Linux or something like,
 anyway, it worked fine in the Windows 10 w/ WSL and in other linux-like
@@ -1001,7 +1004,7 @@ Useful memory areas:
 
 As long the *DarkRISCV* uses separate instruction and data buses, it is not
 possible dump the ROM area.  However, this limitation is not present when
-the option __HARVARD__ is activated, as long the core is constructed in a
+the option `__HARVARD__` is activated, as long the core is constructed in a
 way that the ROM bus is conected to one bus from a dual-ported memory and
 the RAM bus is connected to a different bus from the same dual-ported
 memory. From the *DarkRISCV* point of view, they are fully separated and
@@ -1025,7 +1028,7 @@ Also, special thanks to the "friends of darkriscv" that found the project in
 the internet and contributed in any way to make it better: 
 
 - Guilherme Barile (technology guru and first guy to post anything about the darkriscv! [2]).
-- Alasdair Allan (technology guru, posted an article about the darkriscv [3]) 
+- Alasdair Allan (technology guru, posted an article about the darkriscv [3])
 - Gareth Halfacree (technology guru, posted an article about the DarkRISCV [4])
 - Ivan Vasilev (ported DarkRISCV for Lattice Brevia XP2!)
 - timdudu from github (fix in the LDATA and found a bug in the BCC instruction)
